@@ -56,3 +56,9 @@
 .content h1 {
   margin-top: 0;
 }
+
+
+.sidebar button.active {
+  background-color: #4b5563;
+  font-weight: bold;
+}

@@ -1,29 +1,42 @@
+import { useState } from 'react'
+
 import './App.css'
 
+import Sidebar from './components/layout/Sidebar'
+
+import Dashboard from './pages/Dashboard'
+import History from './pages/History'
+import Statistics from './pages/Statistics'
+import Settings from './pages/Settings'
+
 function App() {
+  const [currentPage, setCurrentPage] = useState('dashboard')
+
+  function renderPage() {
+    switch (currentPage) {
+      case 'history':
+        return <History />
+
+      case 'statistics':
+        return <Statistics />
+
+      case 'settings':
+        return <Settings />
+
+      default:
+        return <Dashboard />
+    }
+  }
+
   return (
     <div className="app">
-      <aside className="sidebar">
-        <h2>BraveTracker</h2>
-
-        <nav>
-          <button>Dashboard</button>
-          <button>History</button>
-          <button>Statistics</button>
-          <button>Settings</button>
-        </nav>
-      </aside>
+      <Sidebar
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
 
       <main className="content">
-        <h1>Dashboard</h1>
-
-        <p>
-          Welcome to BraveTracker.
-        </p>
-
-        <p>
-          This is the starting point of our application.
-        </p>
+        {renderPage()}
       </main>
     </div>
   )
