@@ -1,0 +1,1 @@
+console.log("BraveTracker Background Service Worker Started");
