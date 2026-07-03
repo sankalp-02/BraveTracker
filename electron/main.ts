@@ -28,11 +28,24 @@ let win: BrowserWindow | null
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.mjs'),
-    },
-  })
+  title: 'BraveTracker',
+
+  width: 1400,
+  height: 900,
+
+  minWidth: 1100,
+  minHeight: 700,
+
+  center: true,
+
+  backgroundColor: '#f5f5f5',
+
+  icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+
+  webPreferences: {
+    preload: path.join(__dirname, 'preload.mjs'),
+  },
+})
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {

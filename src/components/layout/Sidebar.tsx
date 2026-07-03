@@ -1,6 +1,9 @@
+import type { Page } from '../../types/Page'
+
+
 type SidebarProps = {
-  currentPage: string
-  onPageChange: (page: string) => void
+  currentPage: Page
+  onPageChange: (page: Page) => void
 }
 
 function Sidebar({ currentPage, onPageChange }: SidebarProps) {

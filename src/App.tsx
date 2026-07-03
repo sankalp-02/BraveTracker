@@ -9,8 +9,10 @@ import History from './pages/History'
 import Statistics from './pages/Statistics'
 import Settings from './pages/Settings'
 
+import type { Page } from './types/Page'
+
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard')
+  const [currentPage, setCurrentPage] = useState<Page>('dashboard')
 
   function renderPage() {
     switch (currentPage) {
