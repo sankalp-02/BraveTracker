@@ -14,6 +14,15 @@ import type { Page } from './types/Page'
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('dashboard')
 
+//   function sendTestMessage() {
+
+//   window.ipcRenderer.send(
+//     "test-message",
+//     "Hello from React!"
+//   );
+
+// }
+
   function renderPage() {
     switch (currentPage) {
       case 'history':
@@ -38,7 +47,13 @@ function App() {
       />
 
       <main className="content">
+
+        {/* <button onClick={sendTestMessage}>
+          Send Test Message
+        </button> */}
+
         {renderPage()}
+
       </main>
     </div>
   )
