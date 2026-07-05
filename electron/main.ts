@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import net from 'node:net'
 
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -80,16 +81,31 @@ app.on('activate', () => {
 
 app.whenReady().then(() => {
 
-  createWindow();
+  createWindow()
 
-  // ipcMain.on("test-message", (_event, message) => {
+  const client = net.createConnection(
+    {
+      port: 5000,
+      host: '127.0.0.1'
+    },
+    () => {
+      console.log('')
+      console.log('==============================')
+      console.log('Connected to Native Host Server')
+      console.log('==============================')
+    }
+  )
 
-  //   console.log("");
-  //   console.log("==============================");
-  //   console.log("MESSAGE RECEIVED FROM REACT");
-  //   console.log("==============================");
-  //   console.log(message);
+  client.on('data', (data) => {
+    console.log('Received:', data.toString())
+  })
 
-  // });
+  client.on('error', (error) => {
+    console.log('Connection Error:', error.message)
+  })
 
-});
+  client.on('close', () => {
+    console.log('Connection Closed')
+  })
+
+})
